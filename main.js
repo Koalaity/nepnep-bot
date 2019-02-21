@@ -75,18 +75,23 @@ const help = new RichEmbed()
   .setColor(0x69359c)
   .setFooter("Bot created by Koalaity.")
 
+let userdata = require("./userdata.json")
+
 //======================================================
 
 function rankControl(action1, action2, id, requester) {
   if(action1 === "add") {
     if(action2 === "ban") {
-      fs.appendFileSync("banned.txt", id + "\n");
+      userdata.banned.push(id);
+      fs.writeFileSync("userdata.json", JSON.stringify(userdata));
       logAll(`${requester} has banned ${id}!`);
     } else if(action2 === "mod") {
-      fs.appendFileSync("mods.txt", id + "\n");
+      userdata.mods.push(id);
+      fs.writeFileSync("userdata.json", JSON.stringify(userdata));
       logAll(`${requester} has modded ${id}!`);
     } else if(action2 === "admin") {
-      fs.appendFileSync("admins.txt", id + "\n");
+      userdata.admins.push(id);
+      fs.writeFileSync("userdata.json", JSON.stringify(userdata));
       logAll(`${requester} has admined ${id}!`);
     }
   } else if(action1=== "remove") {

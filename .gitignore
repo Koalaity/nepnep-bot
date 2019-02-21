@@ -4,6 +4,7 @@ config.json
 admins.txt
 banned.txt
 mods.txt
+userdata.json
 
 # Logs
 logs
