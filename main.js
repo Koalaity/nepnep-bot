@@ -21,13 +21,15 @@ const {
   token
 } = require("./secret.json");
 
-var nonowords = require('profanities')
+const express = require("express");
+
+var nonowords = require('profanities');
 
 const fs = require("fs");
 
 const client = new Client();
 
-const prefix = "n!"
+const prefix = "n!";
 
 const nepPics = [
   "https://i.imgur.com/2NLrN4h.jpg",
@@ -75,7 +77,7 @@ const help = new RichEmbed()
   .setColor(0x69359c)
   .setFooter("Bot created by Koalaity.")
 
-let userdata = require("./userdata.json")
+let userdata = require("./userdata.json");
 
 //======================================================
 
@@ -164,7 +166,7 @@ client.on('message', message => {
         let eightBallEmbed = new RichEmbed()
           .setTitle("Neptune's 8-Ball")
           .setThumbnail("https://s3.amazonaws.com/ionic-marketplace/8ball-starter-app/icon.png")
-          .setDescription(eightBall[Math.floor(Math.random() * eightBall.length)])
+          .setDescription(eightBall[Math.floor(Math.random() * eightBall.length) - 1])
           .setColor(0x69359c)
         message.channel.send(eightBallEmbed);
         break;
@@ -183,11 +185,14 @@ client.on('message', message => {
         message.channel.send(nepPicEmbed);
         break;
 
-        default:
-          //This part has one usage... being god damn annoying.
-          if((message.content.toLowerCase().includes("nep")) && (!message.author.bot)) {
-            message.channel.send("Nep nep~!")
-          }
+      case "announce":
+        break;
+
+      default:
+        //This part has one usage... being god damn annoying.
+        if((message.content.toLowerCase().includes("nep")) && (!message.author.bot)) {
+          message.channel.send("Nep nep~!")
+        }
 
     }
   }
